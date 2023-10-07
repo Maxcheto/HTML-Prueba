@@ -3,75 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruleta Giratoria</title>
+    <title>Google ChromeOS</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
             text-align: center;
+            width: 300px;
         }
-        .roulette-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto;
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
         }
-        .roulette {
+        input[type="text"],
+        input[type="password"] {
             width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: conic-gradient(
-                #ff5733 0% 33.3%,
-                #00cc66 33.3% 66.6%,
-                #ff5733 66.6% 100%
-            );
-            animation: spin 4s ease-out;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
-        .option {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            transform: rotate(0deg);
-            transform-origin: 50% 100%;
+        button {
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
-        .option:nth-child(1) {
-            transform: rotate(0deg);
-        }
-        .option:nth-child(2) {
-            transform: rotate(120deg);
-        }
-        .option:nth-child(3) {
-            transform: rotate(240deg);
-        }
-        .result {
-            margin-top: 20px;
-            font-weight: bold;
-        }
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+        button:hover {
+            background-color: #357ae8;
         }
     </style>
 </head>
 <body>
-    <h1>Ruleta Giratoria</h1>
-    <div class="roulette-container">
-        <div class="roulette"></div>
-        <div class="option">Quedarse en ChromeOS</div>
-        <div class="option">BIOS-Coreboot-Windows 10</div>
-        <div class="option">BIOS-Coreboot-Windows 11</div>
+    <div class="login-container">
+        <h1>Google ChromeOS</h1>
+        <form>
+            <input type="text" placeholder="Usuario" required>
+            <input type="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
     </div>
-    <div class="result">La opción seleccionada es: <span id="selectedOption"></span></div>
-
-    <script>
-        document.querySelector('.roulette').addEventListener('animationend', function() {
-            const options = ["Quedarse en ChromeOS", "BIOS-Coreboot-Windows 10", "BIOS-Coreboot-Windows 11"];
-            const selectedOption = options[Math.floor(Math.random() * options.length)];
-            document.getElementById('selectedOption').textContent = selectedOption;
-        });
-    </script>
 </body>
 </html>
