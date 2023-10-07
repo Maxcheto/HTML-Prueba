@@ -5,49 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruleta Giratoria</title>
     <style>
-        .roulette-container {
-            width: 300px;
-            height: 300px;
-            border: 2px solid #333;
-            border-radius: 50%;
-            position: relative;
-            overflow: hidden;
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
         }
-        
-        .roulette-wheel {
+        .roulette-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        .roulette {
             width: 100%;
             height: 100%;
-            position: absolute;
-            transform-origin: center;
-            animation: spin 4s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
+            border-radius: 50%;
+            background: conic-gradient(
+                #ff5733 0% 33.3%,
+                #00cc66 33.3% 66.6%,
+                #ff5733 66.6% 100%
+            );
+            animation: spin 4s ease-out;
         }
-        
+        .option {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            transform: rotate(0deg);
+            transform-origin: 50% 100%;
+        }
+        .option:nth-child(1) {
+            transform: rotate(0deg);
+        }
+        .option:nth-child(2) {
+            transform: rotate(120deg);
+        }
+        .option:nth-child(3) {
+            transform: rotate(240deg);
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
             }
             100% {
-                transform: rotate(720deg);
+                transform: rotate(360deg);
             }
-        }
-        
-        .roulette-option {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            transform: rotate(30deg); /* Distribuye las opciones uniformemente */
-            font-size: 18px;
-            font-weight: bold;
         }
     </style>
 </head>
 <body>
+    <h1>Ruleta Giratoria</h1>
     <div class="roulette-container">
-        <div class="roulette-wheel">
-            <div class="roulette-option">Quedarse en ChromeOS</div>
-            <div class="roulette-option">BIOS-Coreboot-Windows 10</div>
-            <div class="roulette-option">BIOS-Coreboot-Windows 11</div>
-        </div>
+        <div class="roulette"></div>
+        <div class="option">Quedarse en ChromeOS</div>
+        <div class="option">BIOS-Coreboot-Windows 10</div>
+        <div class="option">BIOS-Coreboot-Windows 11</div>
     </div>
+    <div class="result">La opción seleccionada es: <span id="selectedOption"></span></div>
+
+    <script>
+        document.querySelector('.roulette').addEventListener('animationend', function() {
+            const options = ["Quedarse en ChromeOS", "BIOS-Coreboot-Windows 10", "BIOS-Coreboot-Windows 11"];
+            const selectedOption = options[Math.floor(Math.random() * options.length)];
+            document.getElementById('selectedOption').textContent = selectedOption;
+        });
+    </script>
 </body>
 </html>
